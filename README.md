@@ -54,27 +54,58 @@ It demonstrates how separate services work together to manage products, process 
 ```bash
 git clone https://github.com/Sighopss/Lab1_25F_CST8915_Algonquin_Pet_Store.git
 cd Lab1_25F_CST8915_Algonquin_Pet_Store
+rabbitmq-server
+
+Option B: Docker
+
+bash
+Copy code
+docker run -d --hostname pet-rabbit \
+  --name rabbitmq \
+  -p 5672:5672 -p 15672:15672 \
+  rabbitmq:3-management
+RabbitMQ Dashboard: http://localhost:15672 (login: guest / guest)
+
+AMQP URL: amqp://localhost:5672
+
+3. Run Each Service
+Product Service
+
+bash
+Copy code
+cd product-service
+npm install
+node server.js
+Runs at: http://localhost:3001
+
+Order Service
+
+bash
+Copy code
+cd ../order-service
+npm install
+node server.js
+Runs at: http://localhost:3000
+
+Store-Front
+
+bash
+Copy code
+cd ../store-front
+npm install
+npm start
+Runs at: http://localhost:3002 (or the port shown in the terminal)
+
+4. Test the System
+Open the store-front in your browser at http://localhost:3002
+
+Browse products (retrieved from product-service)
+
+Place an order → order-service receives it and publishes it to RabbitMQ
 
 
-2. **Brief Technical Explanation**
-   - Spend some time examining the source code of each service:
-     - **Order Service (Node.js)**
-     - **Product Service (Rust)**
-     - **Store Front (Vue.js)**
-   - For each service, write a **short technical explanation** (1–2 paragraphs each):
-     - What the service is responsible for.
-     - Which language/framework it uses.
-     - How it interacts with the other services (e.g., RabbitMQ, APIs, or front-end).
-   - Keep it simple but show that you understand the role of each service.
 
-3. **GitHub Repository**
-   - Create a **GitHub repository** for your submission.
-   - Your repository must include:
-     - A `README.md` file with:
-       - The YouTube video link.
-       - Your written technical explanations for the three services.
-     - (Optional) Any notes you want to share about setup challenges or learnings.
-
+https://www.youtube.com/watch?v=NfPWB8eDMpY
 ### How to Submit
 - Push your work to a public GitHub repository.
 - Include the YouTube demo link and explanations in the `README.md`.
