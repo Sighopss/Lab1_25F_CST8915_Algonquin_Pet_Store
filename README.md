@@ -104,9 +104,7 @@ Browse products (retrieved from product-service)
 Place an order → order-service receives it and publishes it to RabbitMQ
 
 
+YOUTUBE
 
 https://www.youtube.com/watch?v=NfPWB8eDMpY
-### How to Submit
-- Push your work to a public GitHub repository.
-- Include the YouTube demo link and explanations in the `README.md`.
-- Submit the link to your GitHub repository as your final lab deliverable in **Brightspace**.
+
